@@ -139,7 +139,7 @@ while status:
                         last_rect.text = last_rect.text[:-1]  
                 if event.key == pygame.K_DELETE: 
                         last_rect.text = ''  
-                elif '0' < event.unicode < '9' :
+                elif '0' <= event.unicode < '9' :
                         last_rect.text += event.unicode
 
                 if event.key == pygame.K_d:
