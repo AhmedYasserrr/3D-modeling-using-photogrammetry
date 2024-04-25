@@ -1,5 +1,6 @@
 import pygame
 
+ratio = 0
 
 class Rectangle:
     def __init__(self, x, y, width, height, color):
@@ -26,12 +27,20 @@ class Rectangle:
 
         self.rect = self.image.get_rect()  
         self.rect.center = old_center
-
+        screen.blit(self.image, self.rect)
+        
         base_font = pygame.font.Font(None, 32) 
         text_surface = base_font.render(self.text, True, (255, 255, 255)) 
+        text_rect = text_surface.get_rect()
+        text_rect.x = old_center[0] - text_surface.get_width()//2
+        text_rect.y = old_center[1] - text_surface.get_height()//2
+        screen.blit(text_surface, text_rect)
 
-        screen.blit(self.image, self.rect)
-        screen.blit(text_surface, self.rect)
+        # update ratio
+        global ratio
+        if self.text != '':
+            ratio = float(self.text) / self.width
+       
 
     def drop(self, new_x, new_y):
         self.rect.x = new_x
@@ -55,5 +64,11 @@ class Rectangle:
         self.theta %= 360
 
     def print(self):
-        print(f"width: {self.width}, height: {self.height}, real width: {self.text}")
-
+        global ratio
+        if self.text != '':
+            ratio = float(self.text) / self.width
+            print(f"width: {self.width}, height: {self.height}, real width: {self.text}, ratio: {round(ratio, 2)}")
+            return f"width: {self.width}, height: {self.height}, real width: {self.text}, ratio: {round(ratio, 2)}"
+        else:
+            print(f"width: {self.width}, height: {self.height}, real width: {round(self.width * ratio, 2)}")
+            return f"width: {self.width}, height: {self.height}, real width: {round(self.width * ratio, 2)}"
