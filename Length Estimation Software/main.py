@@ -99,7 +99,6 @@ def scrn_update(i):
 
 # Flag to indicate whether the rectangle is being dragged
 dragging = False
-input  = False
 status = True
 info = ''
 while status:
@@ -120,7 +119,6 @@ while status:
                     if i < 0: 
                         i = len(img_paths)- 1
 
-                input  = True
                 for rectangle in Rectangles:
                     if rectangle.collidepoint(event.pos):
                         dragging = True
@@ -129,7 +127,6 @@ while status:
                         offset_y = rectangle.rect.y - mouse_y
                         last_rect = rectangle
             elif event.type == pygame.MOUSEBUTTONUP:
-                input  = False
                 dragging = False
             elif event.type == pygame.MOUSEMOTION:
                 mouse_pos = event.pos
@@ -137,13 +134,12 @@ while status:
                     mouse_x, mouse_y = event.pos
                     last_rect.drop(mouse_x + offset_x, mouse_y + offset_y)
             elif event.type == pygame.KEYDOWN:
-
-                if input:
-                    if event.key == pygame.K_BACKSPACE: 
+                
+                if event.key == pygame.K_BACKSPACE: 
                         last_rect.text = last_rect.text[:-1]  
-                    if event.key == pygame.K_DELETE: 
+                if event.key == pygame.K_DELETE: 
                         last_rect.text = ''  
-                    elif '0' < event.unicode < '9' :
+                elif '0' < event.unicode < '9' :
                         last_rect.text += event.unicode
 
                 if event.key == pygame.K_d:

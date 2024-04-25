@@ -10,7 +10,7 @@ This software is designed to help users estimate the length of objects by creati
 
 ### Creating and Manipulating Rectangles
 
-1. Press **N** to start creating a rectangle. Press **N** again to set the end point of the rectangle.
+1. Press **N** to start creating a rectangle (rectangle start point). Press **N** again to set the rectangle end point.
 2. Drag and drop the rectangle using the mouse or use the arrow keys to move it.
 3. Use the following keys to manipulate the rectangle:
    - Press **P** to print the width and height of the current rectangle.
@@ -20,6 +20,7 @@ This software is designed to help users estimate the length of objects by creati
    - Press **W** to increase the rectangle's height.
    - Press **Q** to rotate the rectangle clockwise.
    - Press **E** to rotate the rectangle anti-clockwise.
+4. On the rectangle with known length, write it's length in cm (After this, the real length for all other rectangles will be calculated and displayed when printing).
 
 ## Dependencies
 
